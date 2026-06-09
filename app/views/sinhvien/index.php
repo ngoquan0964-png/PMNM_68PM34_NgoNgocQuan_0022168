@@ -20,6 +20,15 @@
         th {
             background-color: #f2f2f2;
         }
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 4px;
+            text-decoration: none;
+            color: white;
+            background-color: #007bff;
+            border-radius: 4px;
+        }
     </style>
     <table>
         <thead>
@@ -28,18 +37,32 @@
                 <th>MSSV</th>
                 <th>Họ tên</th>
                 <th>Giới tính</th>
+                <th>Thao tác</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach($sinhvien as $sv): ?>
+            <?php foreach($sinhvien as $index => $sv): ?>
                 <tr>
-                    <td><?php echo $sv['id']; ?></td>
+                    <td><?php echo $index +1; ?></td>
                     <td><?php echo $sv['MSSV']; ?></td>
                     <td><?php echo $sv['HoTen']; ?></td>
                     <td><?php echo $sv['GioiTinh']; ?></td>
+                    <td> 
+                        <a href = "/sinhvien/edit/<?php echo $sv['id']; ?>">Sửa</a>
+                        <a href = "/sinhvien/delete/<?php echo $sv['id']; ?>">Xoá</a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
+    <div>
+        <?php
+            $pageSize = 5;
+            for($i =1; $i <= $totalPage; $i++){
+            $offset = ($i - 1) * $pageSize;
+            echo "<a class='btn btn-primary' href = '/sinhvien/index/$pageSize/$offset'> $i </a>";
+            }
+        ?>
+    </div>
 </body>
 </html>
