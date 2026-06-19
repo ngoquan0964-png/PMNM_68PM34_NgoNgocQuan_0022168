@@ -291,18 +291,19 @@
         <table>
             <thead>
                 <tr>
-                    <th style="width: 8%;">STT</th>
-                    <th style="width: 15%;">MSSV</th>
-                    <th style="width: 25%;">Họ tên</th>
-                    <th style="width: 15%;">Giới tính</th>
-                    <th style="width: 22%;">Lớp học</th>
-                    <th style="width: 15%;">Thao tác</th>
+                    <th style="width: 6%;">STT</th>
+                    <th style="width: 12%;">MSSV</th>
+                    <th style="width: 22%;">Họ tên</th>
+                    <th style="width: 12%;">Giới tính</th>
+                    <th style="width: 15%;">Mã lớp</th>
+                    <th style="width: 20%;">Tên lớp</th>
+                    <th style="width: 13%;">Thao tác</th>
                 </tr>
             </thead>
             <tbody>
                 <?php if (empty($sinhvien)): ?>
                     <tr>
-                        <td colspan="6" style="text-align: center; color: var(--text-muted); padding: 30px;">Không tìm thấy sinh viên nào.</td>
+                        <td colspan="7" style="text-align: center; color: var(--text-muted); padding: 30px;">Không tìm thấy sinh viên nào.</td>
                     </tr>
                 <?php else: ?>
                     <?php 
@@ -327,15 +328,14 @@
                             <td>
                                 <?php 
                                 if (!empty($sv['malop'])) {
-                                    $display = $sv['malop'];
-                                    if (!empty($sv['TenLop'])) {
-                                        $display .= " - " . $sv['TenLop'];
-                                    }
-                                    echo '<span class="badge-class">' . htmlspecialchars($display) . '</span>';
+                                    echo '<span class="badge-class">' . htmlspecialchars($sv['malop']) . '</span>';
                                 } else {
                                     echo '<span style="color: var(--text-muted); font-style: italic; font-size: 13px;">Chưa phân lớp</span>';
                                 }
                                 ?>
+                            </td>
+                            <td style="color: var(--text-color);">
+                                <?php echo htmlspecialchars($sv['TenLop'] ?? ''); ?>
                             </td>
                             <td> 
                                 <div class="action-btns">

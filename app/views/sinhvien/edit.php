@@ -116,7 +116,7 @@
             </div>
             
             <div class="form-group">
-                <label for="malop">Lớp học</label>
+                <label for="malop">Mã lớp</label>
                 <select id="malop" name="malop">
                     <option value="">-- Chưa phân lớp --</option>
                     <?php if (!empty($lophoc)): ?>
