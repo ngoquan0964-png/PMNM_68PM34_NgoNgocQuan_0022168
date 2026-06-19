@@ -2,7 +2,7 @@
     class auth{
         protected $user=[
             'admin' => '2',
-            'quan' => '2'
+            'quan' => '1 '
         ];
         public function login() {
             if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
