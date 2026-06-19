@@ -5,7 +5,7 @@ class Controller {
         return new $model();
     }
 
-    public function view($viewName, $data = []) {
+    public function view($viewName, $data = [], $title = 'Hệ thống Quản lý') {
         extract($data);
         $viewname = $viewName;
         require_once '../app/views/layout/masterlayout.php';

@@ -3,13 +3,13 @@
         background-color: var(--card-bg);
         border-radius: var(--radius-md);
         box-shadow: var(--shadow-md);
-        max-width: 500px;
+        max-width: 600px;
         margin: 20px auto;
         border: 1px solid var(--border-color);
         overflow: hidden;
     }
     .card-header {
-        background-color: var(--success-color);
+        background-color: var(--primary-color);
         color: white;
         padding: 20px 30px;
         font-size: 18px;
@@ -33,7 +33,7 @@
         color: var(--danger-color);
         margin-left: 3px;
     }
-    input[type="text"], select {
+    input[type="text"], textarea {
         width: 100%;
         padding: 10px 14px;
         border: 1px solid var(--border-color);
@@ -45,15 +45,18 @@
         color: var(--text-color);
         transition: var(--transition);
     }
-    input[type="text"]:focus, select:focus {
+    input[type="text"]:focus, textarea:focus {
         outline: none;
         border-color: var(--primary-color);
         box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
     }
+    textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
     .btn-group {
         display: flex;
-        flex-direction: column;
-        gap: 10px;
+        gap: 12px;
         margin-top: 30px;
     }
     .btn {
@@ -63,27 +66,26 @@
         padding: 10px 20px;
         border: none;
         border-radius: var(--radius-sm);
-        font-size: 15px;
+        font-size: 14px;
         font-weight: 600;
         cursor: pointer;
         transition: var(--transition);
         text-decoration: none;
-        width: 100%;
     }
-    .btn-submit {
+    .btn-success {
         background-color: var(--success-color);
         color: white;
     }
-    .btn-submit:hover {
+    .btn-success:hover {
         background-color: var(--success-hover);
         transform: translateY(-1px);
     }
-    .btn-back {
+    .btn-light {
         background-color: var(--bg-color);
         color: var(--text-muted);
         border: 1px solid var(--border-color);
     }
-    .btn-back:hover {
+    .btn-light:hover {
         background-color: var(--border-color);
         color: var(--text-color);
     }
@@ -91,47 +93,28 @@
 
 <div class="card">
     <div class="card-header">
-        👤 Thêm sinh viên mới
+        ➕ Thêm lớp học mới
     </div>
     <div class="card-body">
-        <form action="/sinhvien/store" method="POST">
+        <form action="/lophoc/store" method="POST">
             <div class="form-group">
-                <label for="MSSV">Mã số sinh viên (MSSV) <span class="required">*</span></label>
-                <input type="text" id="MSSV" name="MSSV" placeholder="VD: SV001, SV002..." required autocomplete="off">
+                <label for="malop">Mã lớp <span class="required">*</span></label>
+                <input type="text" id="malop" name="malop" placeholder="VD: CNTT01, ATTT01..." required autocomplete="off">
             </div>
             
             <div class="form-group">
-                <label for="HoTen">Họ và tên <span class="required">*</span></label>
-                <input type="text" id="HoTen" name="HoTen" placeholder="VD: Nguyễn Văn A" required autocomplete="off">
+                <label for="tenlop">Tên lớp <span class="required">*</span></label>
+                <input type="text" id="tenlop" name="tenlop" placeholder="VD: Công nghệ thông tin K01" required autocomplete="off">
             </div>
             
             <div class="form-group">
-                <label for="GioiTinh">Giới tính <span class="required">*</span></label>
-                <select id="GioiTinh" name="GioiTinh" required>
-                    <option value="">Chọn giới tính</option>
-                    <option value="Nam">Nam</option>
-                    <option value="Nữ">Nữ</option>
-                    <option value="Khác">Khác</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="malop">Lớp học</label>
-                <select id="malop" name="malop">
-                    <option value="">-- Chưa phân lớp --</option>
-                    <?php if (!empty($lophoc)): ?>
-                        <?php foreach($lophoc as $lh): ?>
-                            <option value="<?php echo htmlspecialchars($lh['malop']); ?>">
-                                <?php echo htmlspecialchars($lh['malop'] . ' - ' . $lh['tenlop']); ?>
-                            </option>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                </select>
+                <label for="ghichu">Ghi chú</label>
+                <textarea id="ghichu" name="ghichu" placeholder="Mô tả thông tin chi tiết về lớp học..."></textarea>
             </div>
 
             <div class="btn-group">
-                <button type="submit" class="btn btn-submit">💾 Lưu sinh viên</button>
-                <a href="/sinhvien/index" class="btn btn-back">Quay lại danh sách</a>
+                <button type="submit" class="btn btn-success">💾 Lưu lớp học</button>
+                <a href="/lophoc/index" class="btn btn-light">Hủy bỏ</a>
             </div>
         </form>
     </div>
